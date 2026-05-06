@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SelahVault - Iniciar sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/selahvault-polish.css}">
 </head>
 <body>
 <div class="auth-wrapper">
-    <div class="card auth-card p-4 col-md-5 col-lg-4">
+    <div class="auth-hero d-none d-lg-flex">
+        <div class="brand-icon large login-main-icon">🔐</div>
+        <h1>SelahVault</h1>
+        <p>Administra tus contraseñas de forma simple y organizada.</p>
+        
+    </div>
+
+    <div class="glass-card auth-card-modern">
         <div class="text-center mb-4">
-            <div class="logo-circle">🔒</div>
-            <div class="brand-title">SelahVault</div>
-            <div class="brand-subtitle">Tus contraseñas en un lugar seguro</div>
-            <div class="brand-verse mt-2">“Encomienda a Jehová tu camino, y confía en Él.” Salmo 37:5</div>
+            <div class="brand-icon mx-auto">🔐</div>
+            <h2>Bienvenid@</h2>
+            <p>Ingresa para acceder a tu bóveda segura.</p>
         </div>
 
         <div th:if="${param.error}" class="alert alert-danger">
@@ -25,21 +34,21 @@
 
         <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
 
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/login}" method="post" class="modern-form">
             <div class="mb-3">
                 <label class="form-label">Usuario</label>
-                <input type="text" name="username" class="form-control" required>
+                <input type="text" name="username" class="form-control" placeholder="Tu usuario" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <label class="form-label">Contraseña</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" placeholder="Tu contraseña" required>
             </div>
 
-            <button class="btn btn-primary w-100">Entrar</button>
+            <button class="btn-gradient w-100">Entrar</button>
         </form>
 
-        <a th:href="@{/register}" class="btn btn-link mt-3">Crear cuenta</a>
+        <a th:href="@{/register}" class="auth-link">Crear cuenta nueva</a>
     </div>
 </div>
 </body>

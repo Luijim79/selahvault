@@ -24,7 +24,7 @@ public class PasswordEntry {
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(max = 255)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 600)
     private String contrasena;
 
     @Size(max = 255)
@@ -39,6 +39,10 @@ public class PasswordEntry {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {

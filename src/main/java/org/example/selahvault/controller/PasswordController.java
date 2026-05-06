@@ -41,7 +41,8 @@ public class PasswordController {
         Usuario usuario = obtenerUsuario(auth);
         model.addAttribute("entries", passwordService.listarPorUsuario(usuario));
         model.addAttribute("passwordGenerada", null);
-        model.addAttribute("fortaleza", null);
+        model.addAttribute("fortalezaGenerador", null);
+        model.addAttribute("fortalezaAnalisis", null);
         return "dashboard";
     }
 
@@ -60,8 +61,27 @@ public class PasswordController {
         }
 
         Usuario usuario = obtenerUsuario(auth);
-        entry.setUsuario(usuario);
-        passwordService.guardar(entry);
+
+        // Si viene un id, significa que estoy editando un registro existente.
+        if (entry.getId() != null) {
+            PasswordEntry existente = passwordService.buscarPorIdYUsuario(entry.getId(), usuario);
+
+            if (existente == null) {
+                return "redirect:/passwords";
+            }
+
+            existente.setTitulo(entry.getTitulo());
+            existente.setUsuarioSitio(entry.getUsuarioSitio());
+            existente.setContrasena(entry.getContrasena());
+            existente.setUrl(entry.getUrl());
+            existente.setUsuario(usuario);
+
+            passwordService.guardar(existente);
+        } else {
+            entry.setUsuario(usuario);
+            passwordService.guardar(entry);
+        }
+
         return "redirect:/passwords";
     }
 
@@ -86,7 +106,7 @@ public class PasswordController {
     }
 
     @PostMapping("/generate")
-    public String generar(@RequestParam(defaultValue = "12") int longitud,
+    public String generar(@RequestParam(defaultValue = "16") int longitud,
                           @RequestParam(defaultValue = "false") boolean mayusculas,
                           @RequestParam(defaultValue = "false") boolean minusculas,
                           @RequestParam(defaultValue = "false") boolean numeros,
@@ -95,10 +115,12 @@ public class PasswordController {
                           Authentication auth) {
 
         Usuario usuario = obtenerUsuario(auth);
+        String password = generadorService.generar(longitud, mayusculas, minusculas, numeros, simbolos);
+
         model.addAttribute("entries", passwordService.listarPorUsuario(usuario));
-        model.addAttribute("passwordGenerada",
-                generadorService.generar(longitud, mayusculas, minusculas, numeros, simbolos));
-        model.addAttribute("fortaleza", null);
+        model.addAttribute("passwordGenerada", password);
+        model.addAttribute("fortalezaGenerador", fortalezaService.evaluar(password));
+        model.addAttribute("fortalezaAnalisis", null);
         return "dashboard";
     }
 
@@ -106,7 +128,8 @@ public class PasswordController {
     public String evaluar(@RequestParam String password, Model model, Authentication auth) {
         Usuario usuario = obtenerUsuario(auth);
         model.addAttribute("entries", passwordService.listarPorUsuario(usuario));
-        model.addAttribute("fortaleza", fortalezaService.evaluar(password));
+        model.addAttribute("fortalezaAnalisis", fortalezaService.evaluar(password));
+        model.addAttribute("fortalezaGenerador", null);
         model.addAttribute("passwordGenerada", null);
         return "dashboard";
     }

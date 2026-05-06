@@ -1,0 +1,838 @@
+
+/* Ajustes visuales finales de SelahVault */
+:root {
+    --sv-bg-1: #031026;
+    --sv-bg-2: #071b3f;
+    --sv-card: rgba(16, 32, 76, 0.92);
+    --sv-card-2: rgba(10, 22, 52, 0.96);
+    --sv-border: rgba(72, 136, 255, 0.28);
+    --sv-text: #f4f8ff;
+    --sv-muted: #a8b8d8;
+    --sv-blue: #38bdf8;
+    --sv-blue-2: #2563eb;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.38), transparent 35%),
+        linear-gradient(135deg, var(--sv-bg-1), var(--sv-bg-2)) !important;
+    color: var(--sv-text);
+}
+
+.auth-page,
+.login-page,
+.register-page {
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 24px !important;
+}
+
+.auth-container,
+.auth-card,
+.login-card,
+.register-card,
+.form-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.sidebar,
+.side-panel,
+.left-panel,
+.aside-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.sidebar .brand-icon,
+.side-panel .brand-icon,
+.left-panel .brand-icon {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-grid,
+.metric-grid,
+.dashboard-stats,
+.top-cards,
+.kpi-grid {
+    display: none !important;
+}
+
+.clean-actions,
+.dashboard-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.btn-primary,
+.primary-btn,
+button[type="submit"],
+.new-record-btn {
+    background: linear-gradient(135deg, #38bdf8, #2563eb) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.28);
+}
+
+.btn-primary:hover,
+.primary-btn:hover,
+.new-record-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+input,
+select,
+textarea {
+    background: rgba(3, 10, 30, 0.88) !important;
+    color: var(--sv-text) !important;
+    border: 1px solid var(--sv-border) !important;
+}
+
+.card,
+.panel,
+.vault-card,
+.generator-card,
+.table-card {
+    background: var(--sv-card) !important;
+    border: 1px solid var(--sv-border) !important;
+    border-radius: 24px !important;
+}
+
+table {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .layout,
+    .dashboard-layout,
+    .main-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .clean-actions,
+    .dashboard-actions {
+        justify-content: stretch;
+    }
+
+    .clean-actions a,
+    .dashboard-actions a,
+    .new-record-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+/* Ajustes pedidos por Luisa */
+.sidebar-brand {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.sidebar-brand > div:last-child span,
+.sidebar-menu {
+    display: none !important;
+}
+
+.records-card .section-heading {
+    display: none !important;
+}
+
+.mini-select {
+    min-width: 120px;
+    background: rgba(56, 189, 248, 0.13) !important;
+    color: #f4f8ff !important;
+    border: 1px solid rgba(72, 136, 255, 0.35) !important;
+    border-radius: 14px !important;
+    padding: 8px 10px !important;
+    font-weight: 700;
+    outline: none;
+}
+
+.mini-select option {
+    background: #07142f;
+    color: #f4f8ff;
+}
+
+.register-page .auth-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 24px !important;
+}
+
+.register-page .auth-card-modern {
+    width: min(560px, 100%) !important;
+    margin: 0 auto !important;
+}
+
+.auth-hero {
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.auth-hero .brand-icon.large,
+.login-main-icon {
+    width: 105px !important;
+    height: 105px !important;
+    border-radius: 30px !important;
+    font-size: 3.4rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.auth-hero h1,
+.auth-hero p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.form-page .input-action input[type="text"] {
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 720px) {
+    .auth-hero .brand-icon.large,
+    .login-main-icon {
+        width: 86px !important;
+        height: 86px !important;
+        font-size: 2.8rem !important;
+    }
+}
+
+
+
+/* Orden y mejora visual final del dashboard */
+.records-card {
+    order: 1 !important;
+}
+
+.tools-grid {
+    order: 2 !important;
+}
+
+.main-content,
+.dashboard-content {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.sidebar .brand-icon,
+.sidebar-brand .brand-icon {
+    font-size: 2.3rem !important;
+}
+
+.vaultbot-visual,
+.bot-visual {
+    width: 130px !important;
+    height: 120px !important;
+    margin: 0 auto 24px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    background: radial-gradient(circle at 30% 25%, rgba(125, 211, 252, 0.35), rgba(37, 99, 235, 0.12) 55%, transparent 70%) !important;
+    border-radius: 32px !important;
+}
+
+.bot-antenna {
+    position: absolute !important;
+    top: 0 !important;
+    width: 4px !important;
+    height: 24px !important;
+    background: #38bdf8 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.75) !important;
+}
+
+.bot-face {
+    width: 92px !important;
+    height: 70px !important;
+    border-radius: 28px !important;
+    background: linear-gradient(135deg, #bfdbfe, #60a5fa) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-shadow: 0 18px 45px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255,255,255,0.55) !important;
+    border: 1px solid rgba(255,255,255,0.45) !important;
+}
+
+.bot-eye {
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: #0f172a !important;
+    box-shadow: 0 0 10px rgba(15, 23, 42, 0.35) !important;
+}
+
+.bot-screen {
+    font-size: 1.65rem !important;
+    line-height: 1 !important;
+}
+
+.bot-card,
+.vaultbot-card,
+.aside-card {
+    background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 45%),
+        linear-gradient(180deg, rgba(15, 48, 91, 0.96), rgba(10, 23, 52, 0.98)) !important;
+    border: 1px solid rgba(56, 189, 248, 0.32) !important;
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24) !important;
+}
+
+.bot-card h3,
+.vaultbot-card h3,
+.aside-card h3 {
+    text-align: center !important;
+    font-size: 1.15rem !important;
+}
+
+.bot-card p,
+.vaultbot-card p,
+.aside-card p {
+    text-align: center !important;
+}
+
+@media (max-width: 900px) {
+    .records-card {
+        order: 1 !important;
+    }
+    .tools-grid {
+        order: 2 !important;
+    }
+}
+
+
+
+/* Corrección final: el generador no analiza y VaultBot se ve como robot */
+.generated-card p,
+.generated-card .strength,
+.generated-card .fortaleza,
+.password-result p {
+    display: none !important;
+}
+
+#resultadoFortaleza:empty {
+    display: none !important;
+}
+
+.vaultbot-card {
+    overflow: hidden !important;
+    position: relative !important;
+    padding: 26px 22px !important;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.28), transparent 42%),
+        linear-gradient(180deg, rgba(13, 50, 89, 0.98), rgba(8, 20, 48, 0.98)) !important;
+}
+
+.vaultbot-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.08), transparent);
+    pointer-events: none;
+}
+
+.vaultbot-avatar {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 auto 22px auto !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.vaultbot-antenna {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 5px !important;
+    height: 31px !important;
+    background: linear-gradient(#67e8f9, #38bdf8) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.95) !important;
+}
+
+.vaultbot-antenna span {
+    position: absolute !important;
+    top: -8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 22px rgba(103, 232, 249, 0.9) !important;
+}
+
+.vaultbot-head {
+    width: 108px !important;
+    height: 86px !important;
+    margin-top: 18px !important;
+    border-radius: 32px !important;
+    background: linear-gradient(145deg, #dbeafe, #60a5fa 60%, #2563eb) !important;
+    border: 2px solid rgba(255,255,255,0.5) !important;
+    box-shadow:
+        0 22px 48px rgba(37, 99, 235, 0.42),
+        inset 0 4px 12px rgba(255,255,255,0.4) !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.vaultbot-ear {
+    position: absolute !important;
+    top: 31px !important;
+    width: 15px !important;
+    height: 32px !important;
+    border-radius: 12px !important;
+    background: #38bdf8 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.55) !important;
+}
+
+.vaultbot-ear.left {
+    left: -13px !important;
+}
+
+.vaultbot-ear.right {
+    right: -13px !important;
+}
+
+.vaultbot-screen {
+    width: 76px !important;
+    height: 43px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(180deg, #07142f, #0f2a55) !important;
+    border: 1px solid rgba(103, 232, 249, 0.45) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.18) !important;
+}
+
+.vaultbot-screen .eye {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 12px rgba(103, 232, 249, 0.95) !important;
+}
+
+.vaultbot-screen .mouth {
+    width: 15px !important;
+    height: 6px !important;
+    border-radius: 0 0 12px 12px !important;
+    border-bottom: 3px solid #67e8f9 !important;
+    margin-top: 10px !important;
+}
+
+.vaultbot-body {
+    position: absolute !important;
+    bottom: 4px !important;
+    width: 58px !important;
+    height: 25px !important;
+    border-radius: 16px 16px 22px 22px !important;
+    background: linear-gradient(135deg, #2563eb, #38bdf8) !important;
+    box-shadow: 0 16px 28px rgba(37, 99, 235, 0.3) !important;
+}
+
+.vaultbot-body span {
+    display: block !important;
+    width: 14px !important;
+    height: 6px !important;
+    border-radius: 10px !important;
+    background: rgba(255,255,255,0.75) !important;
+    margin: 8px auto 0 auto !important;
+}
+
+.vaultbot-card h3 {
+    text-align: center !important;
+    margin-top: 4px !important;
+}
+
+.vaultbot-card p {
+    text-align: center !important;
+    line-height: 1.55 !important;
+}
+
+
+/* Separación correcta de fortaleza: generador vs análisis */
+.generator-strength {
+    display: block !important;
+    margin-top: 14px !important;
+    color: #a8b8d8 !important;
+    font-size: 0.95rem !important;
+}
+
+.generator-strength strong {
+    color: #f4f8ff !important;
+}
+
+.generated-card .generator-strength,
+.password-result .generator-strength {
+    display: block !important;
+}
+
+.generated-card p.generator-strength,
+.password-result p.generator-strength {
+    display: block !important;
+}
+
+
+
+/* Ajuste seguro final */
+.analysis-card input,
+.analysis-card .form-control {
+    margin-bottom: 18px !important;
+}
+
+.generator-strength {
+    display: block !important;
+    margin-top: 14px !important;
+}
+
+.vaultbot-avatar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 20px auto !important;
+}
+
+.robot-antenna {
+    width: 5px !important;
+    height: 26px !important;
+    background: #38bdf8 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 14px #38bdf8 !important;
+}
+
+.robot-head {
+    width: 112px !important;
+    height: 86px !important;
+    border-radius: 30px !important;
+    background: linear-gradient(135deg, #dbeafe, #60a5fa) !important;
+    margin-top: 8px !important;
+    box-shadow: 0 15px 35px rgba(37,99,235,.35) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.robot-eyes {
+    display: flex !important;
+    gap: 20px !important;
+}
+
+.robot-eyes span {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: #0f172a !important;
+}
+
+.robot-mouth {
+    width: 34px !important;
+    height: 5px !important;
+    border-radius: 10px !important;
+    background: #0f172a !important;
+    margin-top: 13px !important;
+}
+
+.robot-body {
+    width: 62px !important;
+    height: 28px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(135deg,#2563eb,#38bdf8) !important;
+    margin-top: 9px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.robot-line {
+    width: 24px !important;
+    height: 4px !important;
+    border-radius: 10px !important;
+    background: white !important;
+}
+
+
+
+/* Cambios exactos solicitados */
+.generator-strength,
+.generated-card .generator-strength,
+.password-result .generator-strength {
+    display: none !important;
+}
+
+/* Espacio entre input y botón del análisis */
+.analysis-button-space {
+    margin-top: 18px !important;
+}
+
+/* Robot visible para VaultBot */
+.robot-visible,
+.vaultbot-avatar.robot-visible {
+    width: 180px !important;
+    height: 190px !important;
+    margin: 0 auto 18px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+}
+
+.robot-visible .robot-antenna {
+    width: 6px !important;
+    height: 28px !important;
+    background: linear-gradient(180deg, #7dd3fc, #38bdf8) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.95) !important;
+    margin-bottom: 5px !important;
+}
+
+.robot-visible .robot-head {
+    width: 125px !important;
+    height: 95px !important;
+    border-radius: 32px !important;
+    background: linear-gradient(145deg, #dbeafe 0%, #93c5fd 45%, #3b82f6 100%) !important;
+    border: 2px solid rgba(255, 255, 255, 0.55) !important;
+    box-shadow:
+        0 22px 50px rgba(37, 99, 235, 0.45),
+        inset 0 5px 14px rgba(255, 255, 255, 0.45) !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.robot-visible .robot-ear {
+    position: absolute !important;
+    top: 31px !important;
+    width: 16px !important;
+    height: 35px !important;
+    border-radius: 12px !important;
+    background: #38bdf8 !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.7) !important;
+}
+
+.robot-visible .robot-ear-left {
+    left: -13px !important;
+}
+
+.robot-visible .robot-ear-right {
+    right: -13px !important;
+}
+
+.robot-visible .robot-face {
+    width: 86px !important;
+    height: 50px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(180deg, #07142f, #0f2a55) !important;
+    border: 1px solid rgba(103, 232, 249, 0.5) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.22) !important;
+}
+
+.robot-visible .robot-eyes {
+    display: flex !important;
+    gap: 25px !important;
+    margin-bottom: 9px !important;
+}
+
+.robot-visible .robot-eyes span {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 12px rgba(103, 232, 249, 0.95) !important;
+}
+
+.robot-visible .robot-mouth {
+    width: 34px !important;
+    height: 5px !important;
+    border-radius: 999px !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.75) !important;
+}
+
+.robot-visible .robot-neck {
+    width: 26px !important;
+    height: 12px !important;
+    background: #38bdf8 !important;
+    border-radius: 0 0 8px 8px !important;
+    margin-top: 4px !important;
+}
+
+.robot-visible .robot-body {
+    width: 76px !important;
+    height: 42px !important;
+    border-radius: 18px 18px 24px 24px !important;
+    background: linear-gradient(135deg, #2563eb, #38bdf8) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 18px 32px rgba(37, 99, 235, 0.35) !important;
+}
+
+.robot-visible .robot-light {
+    width: 18px !important;
+    height: 8px !important;
+    border-radius: 999px !important;
+    background: white !important;
+    opacity: 0.9 !important;
+}
+
+.vaultbot-card h3,
+.bot-card h3,
+.aside-card h3 {
+    margin-top: 4px !important;
+}
+
+/* Corrección final: VaultBot profesional y separación visual de módulos */
+.robot-card .vaultbot-robot {
+    width: 170px !important;
+    margin: 0 auto 18px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    padding-top: 2px !important;
+}
+
+.robot-card .vaultbot-robot .robot-antenna {
+    width: 6px !important;
+    height: 30px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(180deg, #e0f2fe, #38bdf8) !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.95) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    margin-bottom: 6px !important;
+}
+
+.robot-card .vaultbot-robot .robot-antenna span {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 50% !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 18px rgba(103, 232, 249, 0.95) !important;
+    transform: translateY(-7px) !important;
+}
+
+.robot-card .vaultbot-robot .robot-head {
+    width: 128px !important;
+    height: 96px !important;
+    border-radius: 30px !important;
+    background: linear-gradient(145deg, #dbeafe 0%, #93c5fd 46%, #2563eb 100%) !important;
+    border: 2px solid rgba(255, 255, 255, 0.62) !important;
+    box-shadow: 0 22px 48px rgba(37, 99, 235, 0.42), inset 0 6px 16px rgba(255,255,255,0.42) !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.robot-card .vaultbot-robot .robot-ear {
+    position: absolute !important;
+    top: 31px !important;
+    width: 17px !important;
+    height: 36px !important;
+    border-radius: 12px !important;
+    background: #38bdf8 !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.7) !important;
+}
+
+.robot-card .vaultbot-robot .robot-ear-left { left: -13px !important; }
+.robot-card .vaultbot-robot .robot-ear-right { right: -13px !important; }
+
+.robot-card .vaultbot-robot .robot-screen {
+    width: 88px !important;
+    height: 52px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(180deg, #07142f, #102a55) !important;
+    border: 1px solid rgba(103, 232, 249, 0.55) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.24) !important;
+}
+
+.robot-card .vaultbot-robot .robot-eyes {
+    display: flex !important;
+    gap: 25px !important;
+    margin-bottom: 9px !important;
+}
+
+.robot-card .vaultbot-robot .robot-eyes span {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 12px rgba(103, 232, 249, 0.95) !important;
+}
+
+.robot-card .vaultbot-robot .robot-mouth {
+    width: 34px !important;
+    height: 5px !important;
+    border-radius: 999px !important;
+    background: #67e8f9 !important;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.75) !important;
+}
+
+.robot-card .vaultbot-robot .robot-neck {
+    width: 28px !important;
+    height: 12px !important;
+    background: #38bdf8 !important;
+    border-radius: 0 0 8px 8px !important;
+    margin-top: 4px !important;
+}
+
+.robot-card .vaultbot-robot .robot-body {
+    width: 78px !important;
+    height: 44px !important;
+    border-radius: 18px 18px 24px 24px !important;
+    background: linear-gradient(135deg, #2563eb, #38bdf8) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 18px 32px rgba(37, 99, 235, 0.35) !important;
+}
+
+.robot-card .vaultbot-robot .robot-panel {
+    width: 20px !important;
+    height: 9px !important;
+    border-radius: 999px !important;
+    background: #ffffff !important;
+    opacity: 0.92 !important;
+}

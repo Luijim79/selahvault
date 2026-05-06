@@ -1,121 +1,264 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-    <title>SelahVault - Mis contraseñas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelahVault - Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <script>
-        function copiarTexto(texto) {
-            navigator.clipboard.writeText(texto);
-            alert("Copiado correctamente");
-        }
-    </script>
+<link rel="stylesheet" th:href="@{/css/selahvault-polish.css}">
 </head>
-<body class="p-4">
-<div class="container">
+<body>
+<div class="dashboard-shell">
 
-    <div class="navbar-selah mb-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
-        <div class="d-flex align-items-center">
-            <img src="/img/logo.png" alt="Logo" class="logo-header" onerror="this.style.display='none'">
+    <aside class="sidebar-panel">
+        <div class="sidebar-brand">
+            <div class="brand-icon">🔐</div>
             <div>
-                <h2>SelahVault</h2>
-                <p>Tus contraseñas en un lugar seguro</p>
-            </div>
+                <h1>SelahVault</h1></div>
         </div>
-
-        <div class="d-flex gap-2">
-            <a th:href="@{/passwords/new}" class="btn btn-light">Nueva contraseña</a>
-            <form th:action="@{/logout}" method="post">
-                <button class="btn btn-danger">Salir</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row g-4 mb-4">
-        <div class="col-lg-6">
-            <div class="card section-card p-3">
-                <h5 class="page-title">Generar contraseña</h5>
-                <form th:action="@{/passwords/generate}" method="post" class="row g-2">
-                    <div class="col-md-3">
-                        <input type="number" name="longitud" class="form-control" value="12" min="4" max="64">
+<div class="robot-card">
+            <div class="vaultbot-robot" aria-label="VaultBot">
+                <div class="robot-antenna"><span></span></div>
+                <div class="robot-head">
+                    <div class="robot-ear robot-ear-left"></div>
+                    <div class="robot-ear robot-ear-right"></div>
+                    <div class="robot-screen">
+                        <div class="robot-eyes">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="robot-mouth"></div>
                     </div>
-                    <div class="col-md-3">
-                        <input type="checkbox" name="mayusculas"> Mayúsculas
-                    </div>
-                    <div class="col-md-3">
-                        <input type="checkbox" name="minusculas" checked> Minúsculas
-                    </div>
-                    <div class="col-md-3">
-                        <input type="checkbox" name="numeros" checked> Números
-                    </div>
-                    <div class="col-md-6">
-                        <input type="checkbox" name="simbolos"> Símbolos
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-primary w-100">Generar</button>
-                    </div>
-                </form>
-
-                <div th:if="${passwordGenerada}" class="alert alert-info mt-3 mb-0">
-                    Contraseña generada: <strong th:text="${passwordGenerada}"></strong>
+                </div>
+                <div class="robot-neck"></div>
+                <div class="robot-body">
+                    <div class="robot-panel"></div>
                 </div>
             </div>
+            <h3>Consejo de VaultBot</h3>
+            <p id="robotTip">Usa contraseñas diferentes para cada servicio importante.</p>
+            <button type="button" class="btn-ghost w-100" onclick="cambiarConsejo()">Otro consejo</button>
         </div>
+    </aside>
 
-        <div class="col-lg-6">
-            <div class="card section-card p-3">
-                <h5 class="page-title">Evaluar fortaleza</h5>
-                <form th:action="@{/passwords/evaluate}" method="post" class="row g-2">
-                    <div class="col-md-9">
-                        <input type="text" name="password" class="form-control" placeholder="Escribe una contraseña">
+    <main class="main-content">
+        <header class="topbar glass-card">
+            <div>
+                <p class="eyebrow"></p>
+                <h2>Mis contraseñas</h2>
+                <span>Administra tus accesos de forma más organizada y segura.</span>
+            </div>
+
+            <div class="topbar-actions">
+                <a th:href="@{/passwords/new}" class="btn-gradient">+ Nuevo registro</a>
+                <form th:action="@{/logout}" method="post">
+                    <button class="btn-danger-soft">Salir</button>
+                </form>
+            </div>
+        </header>
+
+        
+
+        <section class="tools-grid">
+            <div class="glass-card tool-card">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Generador</p>
+                        <h3>Crear contraseña segura</h3>
                     </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-warning w-100">Evaluar</button>
+                    <span class="chip">Recomendado</span>
+                </div>
+
+                <form th:action="@{/passwords/generate}" method="post" class="generator-form">
+                    <label class="form-label">Longitud</label>
+                    <div class="range-row">
+                        <input type="range" name="longitud" id="longitud" value="16" min="8" max="64" oninput="lengthValue.innerText=this.value">
+                        <strong id="lengthValue">16</strong>
                     </div>
+
+                    <div class="option-grid">
+                        <label class="option-pill"><input type="checkbox" id="mayusculas" name="mayusculas" checked> Mayúsculas</label>
+                        <label class="option-pill"><input type="checkbox" id="minusculas" name="minusculas" checked> Minúsculas</label>
+                        <label class="option-pill"><input type="checkbox" id="numeros" name="numeros" checked> Números</label>
+                        <label class="option-pill"><input type="checkbox" id="simbolos" name="simbolos" checked> Símbolos</label>
+                    </div>
+
+                    <button class="btn-gradient w-100">Generar contraseña</button>
+<div class="generated-card"></div>
                 </form>
 
-                <div th:if="${fortaleza}" class="alert alert-secondary mt-3 mb-0">
-                    Fortaleza detectada: <strong th:text="${fortaleza}"></strong>
+                <div th:if="${passwordGenerada}" class="generated-box">
+                    <span>Contraseña generada</span>
+                    <div class="generated-value">
+                        <code id="generatedPassword" th:text="${passwordGenerada}"></code>
+                        <button type="button" onclick="copiarDesdeElemento('generatedPassword')">Copiar</button>
+                    </div>
+                    <small th:if="${fortalezaGenerador}">Fortaleza: <strong th:text="${fortalezaGenerador}"></strong></small>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="table-wrapper p-3">
-        <h5 class="page-title mb-3">Mis registros</h5>
-        <table class="table table-bordered table-striped mb-0">
-            <thead>
-            <tr>
-                <th>Título</th>
-                <th>Usuario</th>
-                <th>Contraseña</th>
-                <th>URL</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="e : ${entries}">
-                <td th:text="${e.titulo}"></td>
-                <td th:text="${e.usuarioSitio}"></td>
-                <td th:text="${e.contrasena}"></td>
-                <td th:text="${e.url}"></td>
-                <td class="d-flex flex-wrap gap-1">
-                    <a th:href="@{/passwords/edit/{id}(id=${e.id})}" class="btn btn-sm btn-warning">Editar</a>
-                    <a th:href="@{/passwords/delete/{id}(id=${e.id})}" class="btn btn-sm btn-danger">Eliminar</a>
-                    <button type="button" class="btn btn-sm btn-info"
-                            th:attr="onclick=|copiarTexto('${e.usuarioSitio}')|">Copiar user</button>
-                    <button type="button" class="btn btn-sm btn-secondary"
-                            th:attr="onclick=|copiarTexto('${e.contrasena}')|">Copiar contraseña</button>
-                    <button type="button" class="btn btn-sm btn-success"
-                            th:attr="onclick=|copiarTexto('${e.url}')|">Copiar URL</button>
-                </td>
-            </tr>
-            <tr th:if="${#lists.isEmpty(entries)}">
-                <td colspan="5" class="text-center text-muted">Aún no tienes contraseñas guardadas.</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+            <div class="glass-card tool-card">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Análisis</p>
+                        <h3>Evaluar fortaleza</h3>
+                    </div>
+                    
+                </div>
+
+                <form th:action="@{/passwords/evaluate}" method="post" class="evaluate-form">
+                    <label class="form-label">Contraseña a revisar</label>
+                    <input type="text" id="contrasenaAnalisis" name="password" class="form-control" placeholder="Escribe una contraseña para analizarla">
+                    <div class="analysis-button-space"><button class="btn-outline-glow w-100">Evaluar seguridad</button></div>
+                </form>
+
+                <div th:if="${fortalezaAnalisis}" class="strength-box">
+                    <span>Resultado</span>
+                    <strong th:text="${fortalezaAnalisis}"></strong>
+                    <p>Usa este resultado como guía para mejorar tus claves.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card records-card">
+<div class="table-responsive modern-table-wrapper">
+                <table class="table modern-table align-middle">
+                    <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>URL</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="e : ${entries}">
+                        <td>
+                            <div class="service-cell">
+                                <span class="service-icon">🔑</span>
+                                <strong th:text="${e.titulo}"></strong>
+                            </div>
+                        </td>
+                        <td><span th:id="${'user-' + e.id}" th:text="${e.usuarioSitio}"></span></td>
+                        <td>
+                            <div class="password-cell">
+                                <input type="password" class="password-hidden" th:id="${'pass-' + e.id}" th:value="${e.contrasena}" readonly>
+                                <button type="button" class="mini-btn" th:attr="onclick=|togglePassword('pass-${e.id}', this)|">Ver</button>
+                            </div>
+                        </td>
+                        <td><a class="url-link" th:id="${'url-' + e.id}" th:href="${e.url}" target="_blank" th:text="${e.url}"></a></td>
+                        <td>
+                            <div class="action-row">
+                                <a th:href="@{/passwords/edit/{id}(id=${e.id})}" class="mini-btn edit">Editar</a>
+                                <a th:href="@{/passwords/delete/{id}(id=${e.id})}" class="mini-btn delete" onclick="return confirm('¿Seguro que deseas eliminar este registro?')">Eliminar</a>
+                                <select class="mini-select" th:attr="onchange=|copiarSeleccion(this, '${e.id}')|">
+                                    <option value="">Copiar...</option>
+                                    <option value="user">Usuario</option>
+                                    <option value="pass">Contraseña</option>
+                                    <option value="url">URL</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(entries)}">
+                        <td colspan="5" class="empty-state">
+                            <div>🛡️</div>
+                            <strong>Aún no tienes contraseñas guardadas</strong>
+                            <span>Crea tu primer registro para empezar a usar SelahVault.</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 </div>
+
+<div id="toast" class="copy-toast">Copiado correctamente</div>
+
+<script>
+    const consejos = [
+        "Usa contraseñas diferentes para cada servicio importante.",
+        "Activa la verificación en dos pasos siempre que sea posible.",
+        "No guardes contraseñas en notas sin protección.",
+        "Evita usar fechas de nacimiento o nombres familiares.",
+        "Cambia tus contraseñas si sospechas de un acceso extraño.",
+        "Una contraseña larga suele ser más segura que una corta y complicada."
+    ];
+
+    function cambiarConsejo() {
+        const tip = consejos[Math.floor(Math.random() * consejos.length)];
+        document.getElementById("robotTip").innerText = tip;
+    }
+
+    function mostrarToast() {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    function copiarValor(id) {
+        const input = document.getElementById(id);
+        navigator.clipboard.writeText(input.value);
+        mostrarToast();
+    }
+
+    function copiarSeleccion(select, id) {
+        if (!select.value) return;
+
+        let texto = "";
+
+        if (select.value === "user") {
+            texto = document.getElementById("user-" + id).innerText;
+        }
+
+        if (select.value === "pass") {
+            texto = document.getElementById("pass-" + id).value;
+        }
+
+        if (select.value === "url") {
+            texto = document.getElementById("url-" + id).innerText;
+        }
+
+        navigator.clipboard.writeText(texto);
+        select.value = "";
+        mostrarToast();
+    }
+
+    function copiarDesdeElemento(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        mostrarToast();
+    }
+
+    function togglePassword(id, button) {
+        const input = document.getElementById(id);
+        if (input.type === "password") {
+            input.type = "text";
+            button.innerText = "Ocultar";
+        } else {
+            input.type = "password";
+            button.innerText = "Ver";
+        }
+    }
+
+    function limpiarAnalisisGenerador() {
+        const resultado = document.getElementById("resultadoFortaleza");
+        if (resultado) {
+            resultado.style.display = "none";
+            resultado.innerHTML = "";
+        }
+
+        const campoAnalisis = document.getElementById("contrasenaAnalisis") ||
+                              document.getElementById("passwordToCheck") ||
+                              document.getElementById("passwordCheck");
+
+        if (campoAnalisis && campoAnalisis.dataset.manual !== "true") {
+            campoAnalisis.value = "";
+        }
+    }
+</script>
 </body>
 </html>
